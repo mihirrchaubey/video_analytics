@@ -1,0 +1,68 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Application data
+storage/
+temp/
+chroma_db/
+app.log
+*.log
+
+# Media files (large)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+videos/
+uploads/
+outputs/
+
+# Models (large)
+*.pt
+*.pth
+models/
+yolov8n.pt
+
+# OS
+.DS_Store
+Thumbs.db

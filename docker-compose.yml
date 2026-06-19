@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  video-analytics:
+    build: .
+    container_name: video-analytics-app
+    ports:
+      - "8000:8000"  # FastAPI
+      - "8501:8501"  # Streamlit
+    volumes:
+      - ./storage:/app/storage
+      - ./app:/app/app
+    environment:
+      - VIDEO_STORAGE_PATH=/app/storage/videos
+      - FRAME_STORAGE_PATH=/app/storage/frames
+      - CHROMA_DB_PATH=/app/storage/chroma
+      - DATABASE_URL=sqlite:////app/storage/metadata.db
+      - CLIP_MODEL_ID=openai/clip-vit-base-patch32
+      - TARGET_FPS=1
+      - REID_THRESHOLD=0.75
+      - YOLO_MODEL=yolov8n.pt
+    restart: unless-stopped
+    networks:
+      - analytics-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/videos"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  analytics-network:
+    driver: bridge
+
+volumes:
+  storage:
+    driver: local
