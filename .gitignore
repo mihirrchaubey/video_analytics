@@ -35,10 +35,11 @@ MANIFEST
 *.swo
 *~
 
-# Environment variables
+# Environment variables (keep .env.example, ignore actual .env)
 .env
 .env.local
 .env.*.local
+!.env.example
 
 # Application data
 storage/
